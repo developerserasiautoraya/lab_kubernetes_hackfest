@@ -6,7 +6,7 @@ rpm --import https://mirror.webtatic.com/yum/RPM-GPG-KEY-webtatic-el7
 RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
 RUN yum -y update
-RUN yum -y install nano nginx php70w-cli php70w-common php70w-gd php70w-mbstring php70w-mcrypt php70w-mysql php70w-xml php70w-pdo php70w-soap php70w-fpm php70w-pear php70w-devel gcc gcc-c++ unixODBC unixODBC-devel.x86_64 openssh-server git nodejs
+RUN yum -y install nano nginx php70w-cli php70w-common php70w-gd php70w-mbstring php70w-mcrypt php70w-mysql php70w-xml php70w-pdo php70w-soap php70w-fpm php70w-pear php70w-devel gcc gcc-c++ unixODBC unixODBC-devel.x86_64 git nodejs
 RUN pecl install sqlsrv pdo_sqlsrv mongodb
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
