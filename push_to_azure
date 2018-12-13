@@ -1,0 +1,23 @@
+Login and push docker to azure container registry
+
+- az login
+- az acr login --name <acr_name>
+- az acr list --resource-group <resource_group_name> --query "[].{acrLoginServer:loginServer}" --output table
+- docker tag <local_docker_image>:latest <AcrLoginServer>/<remote_name_docker>:latest
+- docker push <AcrLoginServer>/<remote_name_docker>:latest
+- az logout
+
+
+
+
+Deploy ACR to AKS
+- az login
+- az aks get-credentials --resource-group <resource_group_name> --name <aks_name>
+- kubectl get nodes
+- # create secret key for get image from acr in same resource group
+- kubectl create secret docker-registry regcred --docker-server=<AcrLoginServer> --docker-username=<acr_username> --docker-password=<acr_password>
+- # create manifest file (yaml format)
+- kubectl apply -f <manifest_file>.yaml
+- # waiting untuk pods,svc,deploy running
+- kubectl get svc #(to get ip public and port)
+- az logout
