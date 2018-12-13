@@ -27,6 +27,8 @@ sed -i 's;^listen\ =\ .*;listen\ =\ \/run\/php-fpm\/php-fpm.sock;' /etc/php-fpm.
 sed -i 's;^\;listen.owner\ =\ .*;listen.owner\ =\ nginx;' /etc/php-fpm.d/www.conf && \
 sed -i 's;^\;listen.group\ =\ .*;listen.group\ =\ nginx;' /etc/php-fpm.d/www.conf
 
+RUN yum remove -y gcc gcc-c++
+
 RUN yum clean all
 RUN rm -rf /var/cache/yum /tmp/* /var/tmp/*
 
@@ -43,5 +45,5 @@ COPY html /usr/share/nginx/html
 CMD usermod -a -G root 1001
 CMD /usr/sbin/php-fpm && /usr/sbin/nginx -g 'daemon off;' && /usr/sbin/nginx -c /etc/nginx/nginx.conf
 
-EXPOSE 8000
+EXPOSE 80
 EXPOSE 443

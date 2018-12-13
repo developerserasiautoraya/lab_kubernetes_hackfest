@@ -1,29 +1,29 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: phpapp
+  name: ibidtest
 spec:
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
-        app: phpapp
+        app: ibidtest
     spec:
       containers:
-      - name: phpapp
+      - name: ibidtest
         image: imsdev.azurecr.io/ibid/nginx_php:latest
         ports:
-        - containerPort: 8000
+        - containerPort: 80
       imagePullSecrets:
        - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: phpapp-svc
+  name: ibidtest-svc
 spec:
   selector:
-    app: phpapp
+    app: ibidtest
   type: LoadBalancer
   ports:
   - protocol: TCP
