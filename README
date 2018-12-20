@@ -1,0 +1,13 @@
+Local :
+- Install docker service di local
+- Masuk ke folder (nginx/php-fpm) // notes : keduanya harus dilakukan
+- Lalu ketik :
+  -- nginx : docker build ./ -t nginx:7.1
+  -- php-fpm : docker build ./ -t phpfpm:7.1
+- Lalu kembali ke folder awal, lalu jalankan "docker-compose up -d"
+  -- Notes : pastikan nginx & php-fpm berjalan
+- Buatlah vhost dengan nama "kub.test.etc"
+- Lalu buka browser dan ketik alamat tersebut dengan port 8080.
+
+Azure :
+-- Ongoing
