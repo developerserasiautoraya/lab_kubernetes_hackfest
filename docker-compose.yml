@@ -2,16 +2,16 @@ version: '2'
 
 services:
   nginx:
-    image: nginx:7.1
+    image: adms_account_nginx:v1.0.0
     depends_on:
       - php-fpm
     ports:
       - 8080:8080
-    volumes:
-      - ./nginx-vhost/myapp.conf:/bitnami/nginx/conf/vhosts/myapp.conf
-      - .:/app
+    #volumes:
+    #  - ./nginx-vhost/myapp.conf:/bitnami/nginx/conf/vhosts/myapp.conf
+    #  - .:/app
 
   php-fpm:
-    image: phpfpm:7.1
-    volumes:
-      - .:/app
+    image: adms_account_phpfpm:v1.0.0
+    #volumes:
+    #  - .:/app

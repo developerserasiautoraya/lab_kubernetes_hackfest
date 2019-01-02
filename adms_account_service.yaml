@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: adms-account
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: adms-account
+    spec:
+      containers:
+      - name: php-fpm
+        image: imsdev.azurecr.io/ibid/adms_account_phpfpm:v1.0.0
+        ports:
+        - containerPort: 9000
+      - name: nginx
+        image: imsdev.azurecr.io/ibid/adms_account_nginx:v1.0.3
+        ports:
+        - containerPort: 8443
+      imagePullSecrets:
+       - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: adms-account-svc
+spec:
+  selector:
+    app: adms-account
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 443
+    targetPort: 8443

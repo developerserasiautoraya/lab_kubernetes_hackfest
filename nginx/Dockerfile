@@ -25,6 +25,9 @@ ENV BITNAMI_APP_NAME="nginx" \
     NGINX_HTTPS_PORT_NUMBER="443" \
     NGINX_HTTP_PORT_NUMBER="8080" \
     PATH="/opt/bitnami/nginx/sbin:$PATH"
+    
+COPY app /app
+COPY /nginx-vhost/myapp.conf /bitnami/nginx/conf/vhosts/myapp.conf
 
 EXPOSE 8080
 
